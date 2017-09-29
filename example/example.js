@@ -5,13 +5,6 @@ const elmWebComponents = require('../src/index')
 
 elmWebComponents.register('demo-elm-component', Component)
 
-var setupPorts = ports => {
-  console.log('I have been called', ports)
+elmWebComponents.register('component-with-ports', ComponentWithPorts, ports =>
   setInterval(() => ports.newNumber.send(1), 1000)
-}
-
-elmWebComponents.register(
-  'component-with-ports',
-  ComponentWithPorts,
-  setupPorts
 )
