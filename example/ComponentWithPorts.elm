@@ -24,7 +24,7 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    text ("The count is " ++ (toString model.count))
+    text ("You can even use ports! The count is " ++ (toString model.count))
 
 
 init : ( Model, Cmd Msg )
