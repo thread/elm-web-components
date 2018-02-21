@@ -1,26 +1,34 @@
 {
-  "name": "elm-web-components",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "@teamthread/elm-web-components",
+  "version": "0.1.0",
+  "description": "Run your Elm apps through web components.",
+  "main": "lib/index.js",
   "scripts": {
+    "prepack": "npm run build",
+    "build": "babel src/index.js -d lib",
     "example": "webpack-dev-server --config example/webpack.config.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "files": [
+    "lib/index.js"
+  ],
+  "author": "Team Thread",
+  "license": "MIT",
   "prettier": {
     "singleQuote": true,
     "trailingComma": "es5",
     "semi": false
   },
   "devDependencies": {
-    "elm": "^0.18.0",
-    "elm-webpack-loader": "^4.3.1",
-    "prettier": "^1.7.2"
+    "elm": "0.18.0",
+    "elm-webpack-loader": "4.3.1",
+    "prettier": "1.10.2",
+    "webpack": "3.6.0",
+    "webpack-dev-server": "2.9.1"
   },
   "dependencies": {
-    "webpack": "^3.6.0",
-    "webpack-dev-server": "^2.9.1"
+    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40"
   }
 }
