@@ -24,9 +24,7 @@
     "elm-webpack-loader": "4.3.1",
     "prettier": "1.10.2",
     "webpack": "3.6.0",
-    "webpack-dev-server": "2.9.1"
-  },
-  "dependencies": {
+    "webpack-dev-server": "2.9.1",
     "@babel/cli": "^7.0.0-beta.40",
     "@babel/core": "^7.0.0-beta.40",
     "@babel/preset-env": "^7.0.0-beta.40"
