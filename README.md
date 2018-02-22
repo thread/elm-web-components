@@ -53,7 +53,7 @@ You can create a custom web element that will render it like so:
 
 ```js
 import elmWebComponents from '@teamthread/elm-web-components'
-import ElmApp from './Main.elm'
+import Component from './Component.elm'
 
 elmWebComponents.register('demo-elm-component', Component)
 ```
