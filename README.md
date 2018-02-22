@@ -13,7 +13,7 @@ yarn add @teamthread/elm-web-components
 Given the following Elm app:
 
 ```elm
-module Component exposing (..)
+module Main exposing (..)
 
 import Html exposing (text, Html)
 
@@ -53,9 +53,9 @@ You can create a custom web element that will render it like so:
 
 ```js
 import elmWebComponents from '@teamthread/elm-web-components'
-import Component from './Component.elm'
+import ElmApp from './Main.elm'
 
-elmWebComponents.register('demo-elm-component', Component)
+elmWebComponents.register('demo-elm-component', ElmApp.Main)
 ```
 
 And now in your HTML you can use the component:
