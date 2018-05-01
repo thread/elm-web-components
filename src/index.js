@@ -12,11 +12,15 @@ const getProps = el => {
 }
 
 const elmWebComponents = {
-  register(name, ElmComponent, setupPorts = () => {}) {
+  register(
+    name,
+    ElmComponent,
+    { setupPorts = () => {}, staticFlags = {} } = {}
+  ) {
     const elementPrototype = Object.create(HTMLElement.prototype)
 
     elementPrototype.createdCallback = function() {
-      const props = getProps(this)
+      let props = Object.assign({}, getProps(this), staticFlags)
       if (Object.keys(props).length === 0) props = undefined
 
       const elmElement = ElmComponent.embed(this, props)

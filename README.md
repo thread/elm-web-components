@@ -68,13 +68,47 @@ Any attributes are passed into your Elm app as Flags, so make sure you use `prog
 
 ## Ports
 
-You can also hook up a component that uses ports. The third argument to `elmWebComponents.register` is a function that will be called with the ports object that Elm provides, so you can then hook into it and `subscribe` and `send` to them as you would normally:
+You can also hook up a component that uses ports. The third argument to `elmWebComponents.register` is an object that can take a function that will be called with the ports object that Elm provides, so you can then hook into it and `subscribe` and `send` to them as you would normally:
 
 ```js
-elmWebComponents.register('component-with-ports', ComponentWithPorts, ports =>
-  ports.somePort.send(1)
-  ports.someOtherPort.subscribe(...)
-)
+elmWebComponents.register('component-with-ports', ComponentWithPorts, {
+  setupPorts: ports => {
+    ports.somePort.send(1)
+    ports.someOtherPort.subscribe(data => {
+      // deal with port here
+    })
+  },
+})
 ```
 
-You can find a full example of this in the `example` directory.
+## Static Flags
+
+Sometimes you will want to pass in flags not only via HTML attributes, but from JavaScript. The third argument to `elmWebComponents.register` takes a `staticFlags` object which will be passed in:
+
+```js
+elmWebComponents.register('component-with-ports', ComponentWithPorts, {
+  setupPorts: ports => {},
+  staticFlags: {
+    someCustomProp: 'foo',
+  },
+})
+```
+
+Now, rendering the component like so:
+
+```html
+<component-with-ports name="Jack"></component-with-ports>
+```
+
+Will end up with the Elm component having two flags: `someCustomProp` and `name`.
+
+## Examples
+
+You can find full examples in the `example` directory. If you have cloned the repository, you can run `yarn run example` to run them locally.
+
+## Changelog
+
+**v0.2.0** [1 May 2018]
+
+* Added support for static flags via the `staticFlags` option.
+* **Breaking change**: third argument to `register` now takes an object with two (optional) properties: `setupPorts` and `staticFlags`, rather than just a function for setting up the ports.
