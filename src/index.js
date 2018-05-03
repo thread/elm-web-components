@@ -15,7 +15,7 @@ const elmWebComponents = {
   register(
     name,
     ElmComponent,
-    { setupPorts = () => {}, staticFlags = {} } = {}
+    { setupPorts = () => {}, staticFlags = {}, onDetached = () => {} } = {}
   ) {
     const elementPrototype = Object.create(HTMLElement.prototype)
 
@@ -26,6 +26,10 @@ const elmWebComponents = {
       const elmElement = ElmComponent.embed(this, props)
 
       setupPorts(elmElement.ports)
+    }
+
+    elementPrototype.detachedCallback = function() {
+      onDetached()
     }
 
     document.registerElement(name, { prototype: elementPrototype })
