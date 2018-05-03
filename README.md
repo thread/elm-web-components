@@ -100,13 +100,34 @@ Now, rendering the component like so:
 <component-with-ports name="Jack"></component-with-ports>
 ```
 
-Will end up with the Elm component having two flags: `someCustomProp` and `name`.
+## `onDetached` (new in 0.3.0)
+
+If you need to do some work when the Elm component is removed from the DOM, you can now pass `onDetached: () => ...` as another option:
+
+```js
+elmWebComponents.register('component-with-ports', ComponentWithPorts, {
+  setupPorts: ports => {},
+  staticFlags: {
+    someCustomProp: 'foo',
+  },
+  onDetached: () => {
+    console.log('Called when the component is removed from the DOM')
+  }
+})
+```
+
+This is useful for tidying up any event listeners you might have.
+
 
 ## Examples
 
 You can find full examples in the `example` directory. If you have cloned the repository, you can run `yarn run example` to run them locally.
 
 ## Changelog
+
+**v0.3.0** [3 May 2018]
+
+* You can now pass `onDetached` as an option. This is a callback function that will be run when component is removed from the DOM.
 
 **v0.2.0** [1 May 2018]
 

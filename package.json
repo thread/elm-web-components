@@ -1,6 +1,6 @@
 {
   "name": "@teamthread/elm-web-components",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Run your Elm apps through web components.",
   "main": "lib/index.js",
   "scripts": {
