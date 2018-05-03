@@ -100,6 +100,8 @@ Now, rendering the component like so:
 <component-with-ports name="Jack"></component-with-ports>
 ```
 
+Will pass through two flags: `someCustomProp` and `name`. Note that currently if a static flag and a passed attribute have the same name, the static flag takes priority.
+
 ## `onDetached` (new in 0.3.0)
 
 If you need to do some work when the Elm component is removed from the DOM, you can now pass `onDetached: () => ...` as another option:
