@@ -5,7 +5,9 @@
       {
         "debug": true,
         "targets": {
-          "browsers": ["last 2 versions"]
+          "browsers": [
+            ">0.25%"
+          ]
         }
       }
     ]
