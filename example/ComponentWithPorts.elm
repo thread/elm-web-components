@@ -1,6 +1,6 @@
 port module ComponentWithPorts exposing (..)
 
-import Html exposing (text, Html)
+import Html exposing (Html, text)
 
 
 type Msg
@@ -24,7 +24,7 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    text ("You can even use ports! The count is " ++ (toString model.count))
+    text ("You can even use ports! The count is " ++ toString model.count)
 
 
 init : ( Model, Cmd Msg )

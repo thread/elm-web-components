@@ -1,6 +1,6 @@
 module ComponentWithStaticProp exposing (..)
 
-import Html exposing (text, div, Html)
+import Html exposing (Html, div, text)
 import Html.Attributes exposing (class)
 
 
@@ -28,7 +28,7 @@ renderAge : Maybe Int -> Html Msg
 renderAge age =
     case age of
         Just x ->
-            text ("And I am " ++ (toString x) ++ " years old.")
+            text ("And I am " ++ toString x ++ " years old.")
 
         Nothing ->
             text ""
