@@ -2,6 +2,8 @@
 
 A small JavaScript package to let you wrap your Elm applications up in a web component.
 
+*Only supports Elm 0.18. Update for 0.19 is in the works...*
+
 ## Install
 
 ```
@@ -126,6 +128,11 @@ This is useful for tidying up any event listeners you might have.
 You can find full examples in the `example` directory. If you have cloned the repository, you can run `yarn run example` to run them locally.
 
 ## Changelog
+
+**v0.4.0** [22 Aug 2018]
+
+* Breaking change: we now convert kebab case properties into camelCase. So `<foo-bar first-name="Jack" />` will be given to Elm as `firstName: "Jack"`.
+
 
 **v0.3.0** [3 May 2018]
 
