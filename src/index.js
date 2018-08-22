@@ -1,11 +1,21 @@
 // adapted from https://github.com/PixelsCommander/ReactiveElements
 
+const camelize = str => {
+  // adapted from https://stackoverflow.com/questions/2970525/converting-any-string-into-camel-case#2970667
+  return str
+    .toLowerCase()
+    .replace(/[-_]+/g, ' ')
+    .replace(/[^\w\s]/g, '')
+    .replace(/ (.)/g, firstChar => firstChar.toUpperCase())
+    .replace(/ /g, '')
+}
+
 const getProps = el => {
   const props = {}
 
   for (let i = 0; i < el.attributes.length; i++) {
     const attribute = el.attributes[i]
-    const name = attribute.name
+    const name = camelize(attribute.name)
     props[name] = attribute.value
   }
   return props
