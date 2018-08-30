@@ -8,16 +8,16 @@ module.exports = {
   },
   devServer: {
     contentBase: path.join(__dirname),
+    port: 8081,
   },
+  mode: 'development',
   module: {
     rules: [
       {
         test: /\.elm$/,
         exclude: [/elm-stuff/, /node_modules/],
-        use: {
-          loader: 'elm-webpack-loader',
-          options: {},
-        },
+        loader: 'elm-webpack-loader',
+        options: {},
       },
     ],
     noParse: [/.elm$/],

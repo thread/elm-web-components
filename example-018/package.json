@@ -1,0 +1,16 @@
+{
+  "name": "example-019",
+  "version": "1.0.0",
+  "description": "",
+  "main": "example.js",
+  "scripts": {
+    "example": "webpack-dev-server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "elm": "^0.18.0",
+    "elm-webpack-loader": "^4.5.0"
+  }
+}

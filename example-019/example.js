@@ -1,22 +1,22 @@
-const { Component } = require('./Component.elm')
-const { ComponentWithPorts } = require('./ComponentWithPorts.elm')
-const { ComponentWithStaticProp } = require('./ComponentWithStaticProp.elm')
+const { Elm } = require('./Component.elm')
 
 const elmWebComponents = require('../src/index')
 
-elmWebComponents.register('demo-elm-component', Component, {
+elmWebComponents.configure('0.19')
+
+elmWebComponents.register('demo-elm-component', Elm.Component, {
   onDetached: () => {
     console.log('this component is being removed from the DOM now')
   },
 })
 
-elmWebComponents.register('component-with-ports', ComponentWithPorts, {
+elmWebComponents.register('component-with-ports', Elm.ComponentWithPorts, {
   setupPorts: ports => setInterval(() => ports.newNumber.send(1), 1000),
 })
 
 elmWebComponents.register(
   'component-with-static-prop',
-  ComponentWithStaticProp,
+  Elm.ComponentWithStaticProp,
   {
     staticFlags: { styles: { helloWorld: 'helloWorld-123' } },
   }
@@ -25,5 +25,6 @@ elmWebComponents.register(
 const button = document.getElementById('remove')
 button.addEventListener('click', () => {
   const component = document.querySelector('demo-elm-component')
+  console.log('got component', component)
   component.parentElement.removeChild(component)
 })

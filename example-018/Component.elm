@@ -1,21 +1,16 @@
-module ComponentWithStaticProp exposing (..)
+module Component exposing (main)
 
-import Html exposing (Html, div, text)
-import Html.Attributes exposing (class)
+import Html exposing (Html, div, hr, text)
 
 
 type Msg
     = NoOp
 
 
-type alias Styles =
-    { helloWorld : String }
-
-
 type alias Model =
     { name : String
     , age : Maybe Int
-    , styles : Styles
+    , favouriteColour : String
     }
 
 
@@ -36,15 +31,18 @@ renderAge age =
 
 view : Model -> Html Msg
 view model =
-    div [ class model.styles.helloWorld ]
+    div []
         [ text ("Hello world, my name is: " ++ model.name)
+        , hr [] []
+        , text ("I love the colour " ++ model.favouriteColour)
+        , hr [] []
         , renderAge model.age
-        , text "I have a CSS class applied via a static prop that was passed in"
+        , hr [] []
         ]
 
 
 type alias Flags =
-    { name : String, age : String, styles : Styles }
+    { name : String, age : String, favouriteColour : String }
 
 
 getAgeFromFlags : Flags -> Maybe Int
@@ -54,7 +52,7 @@ getAgeFromFlags { age } =
 
 init : Flags -> ( Model, Cmd Msg )
 init flags =
-    ( Model flags.name (getAgeFromFlags flags) flags.styles, Cmd.none )
+    ( Model flags.name (getAgeFromFlags flags) flags.favouriteColour, Cmd.none )
 
 
 main : Program Flags Model Msg

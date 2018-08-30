@@ -1,16 +1,22 @@
-module Component exposing (..)
+module ComponentWithStaticProp exposing (main)
 
-import Html exposing (Html, div, hr, text)
+import Browser
+import Html exposing (Html, div, text)
+import Html.Attributes exposing (class)
 
 
 type Msg
     = NoOp
 
 
+type alias Styles =
+    { helloWorld : String }
+
+
 type alias Model =
     { name : String
     , age : Maybe Int
-    , favouriteColour : String
+    , styles : Styles
     }
 
 
@@ -23,7 +29,7 @@ renderAge : Maybe Int -> Html Msg
 renderAge age =
     case age of
         Just x ->
-            text ("And I am " ++ toString x ++ " years old.")
+            text ("And I am " ++ String.fromInt x ++ " years old.")
 
         Nothing ->
             text ""
@@ -31,31 +37,28 @@ renderAge age =
 
 view : Model -> Html Msg
 view model =
-    div []
+    div [ class model.styles.helloWorld ]
         [ text ("Hello world, my name is: " ++ model.name)
-        , hr [] []
-        , text ("I love the colour " ++ model.favouriteColour)
-        , hr [] []
         , renderAge model.age
-        , hr [] []
+        , text "I have a CSS class applied via a static prop that was passed in"
         ]
 
 
 type alias Flags =
-    { name : String, age : String, favouriteColour : String }
+    { name : String, age : String, styles : Styles }
 
 
 getAgeFromFlags : Flags -> Maybe Int
 getAgeFromFlags { age } =
-    age |> String.toInt |> Result.toMaybe
+    age |> String.toInt
 
 
 init : Flags -> ( Model, Cmd Msg )
 init flags =
-    ( Model flags.name (getAgeFromFlags flags) flags.favouriteColour, Cmd.none )
+    ( Model flags.name (getAgeFromFlags flags) flags.styles, Cmd.none )
 
 
 main : Program Flags Model Msg
 main =
-    Html.programWithFlags
+    Browser.element
         { init = init, update = update, subscriptions = \_ -> Sub.none, view = view }
