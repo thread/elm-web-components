@@ -2,13 +2,24 @@
 
 A small JavaScript package to let you wrap your Elm applications up in a web component.
 
-*Only supports Elm 0.18. Update for 0.19 is in the works...*
 
 ## Install
 
 ```
 yarn add @teamthread/elm-web-components
 ```
+
+## Configuration
+
+We support both Elm 0.18 and 0.19 for now. You must configure the module so it knows which one to support:
+
+```js
+elmWebComponents.configure('0.18')
+// OR:
+elmWebComponents.configure('0.19')
+```
+
+You will get an error and the library will not work without this configuration step.
 
 ## Example
 
@@ -128,6 +139,10 @@ This is useful for tidying up any event listeners you might have.
 You can find full examples in the `example` directory. If you have cloned the repository, you can run `yarn run example` to run them locally.
 
 ## Changelog
+
+**v0.5.0** [28 Aug 2018] (in beta)
+
+* Breaking change: we now support Elm 0.19 and 0.18! You must now configure the library before using it: `elmWebComponents.configure('0.18')` or `elmWebComponents.configure('0.19')`.
 
 **v0.4.0** [22 Aug 2018]
 
