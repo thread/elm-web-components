@@ -26,7 +26,6 @@ let hasWarnedAboutMissingElmVersion = false
 const elmWebComponents = {
   __elmVersion: null,
   configure(elmVersion) {
-    console.log('called', elmVersion)
     if (elmVersion !== '0.18' && elmVersion !== '0.19') {
       console.error('elm-web-components: elmVersion passed was not correct.')
       console.error('elm-web-components: it must be one of "0.18" or "0.19".')
