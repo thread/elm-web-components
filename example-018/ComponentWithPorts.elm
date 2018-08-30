@@ -1,4 +1,4 @@
-port module ComponentWithPorts exposing (..)
+port module ComponentWithPorts exposing (main)
 
 import Html exposing (Html, text)
 
@@ -27,8 +27,12 @@ view model =
     text ("You can even use ports! The count is " ++ toString model.count)
 
 
-init : ( Model, Cmd Msg )
-init =
+type alias Flags =
+    {}
+
+
+init : Flags -> ( Model, Cmd Msg )
+init flags =
     ( Model 0, Cmd.none )
 
 
@@ -37,7 +41,7 @@ subscriptions model =
     newNumber NewNumber
 
 
-main : Program Never Model Msg
+main : Program Flags Model Msg
 main =
-    Html.program
+    Html.programWithFlags
         { init = init, update = update, subscriptions = subscriptions, view = view }
