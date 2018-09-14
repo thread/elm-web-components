@@ -36,7 +36,7 @@ const elmWebComponents = {
   register(
     name,
     ElmComponent,
-    { setupPorts = () => {}, staticFlags = {}, onDetached = () => {} } = {}
+    { setupPorts = () => {}, staticFlags = {}, onDetached = () => {}, mapFlags = flags => flags } = {}
   ) {
     if (!this.__elmVersion) {
       if (!hasWarnedAboutMissingElmVersion) {
@@ -60,6 +60,8 @@ const elmWebComponents = {
       let props = Object.assign({}, getProps(this), staticFlags)
       if (Object.keys(props).length === 0) props = undefined
 
+      const flags = mapFlags(props);
+
       if (elmVersion === '0.19') {
         /* a change in Elm 0.19 means that ElmComponent.init now replaces the node you give it
        * whereas in 0.18 it rendered into it. To avoid Elm therefore destroying our custom element
@@ -70,12 +72,12 @@ const elmWebComponents = {
         this.appendChild(elmDiv)
 
         const elmElement = ElmComponent.init({
-          flags: props,
+          flags,
           node: elmDiv,
         })
         setupPorts(elmElement.ports)
       } else if (elmVersion === '0.18') {
-        const elmElement = ElmComponent.embed(this, props)
+        const elmElement = ElmComponent.embed(this, flags)
         setupPorts(elmElement.ports)
       }
     }

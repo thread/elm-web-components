@@ -115,6 +115,29 @@ Now, rendering the component like so:
 
 Will pass through two flags: `someCustomProp` and `name`. Note that currently if a static flag and a passed attribute have the same name, the static flag takes priority.
 
+## Transforming flags
+
+Sometimes you might want to pre-process the flags a bit in Javascript before giving them to Elm. For
+example, all the attributes from the DOM are strings, but you might want to make one of them an
+integer:
+
+```js
+elmWebComponents.register('component-with-ports', ComponentWithPorts, {
+  mapFlags: flags => {
+    const someId = parseInt(flags.someId);
+    return Object.assign({}, flags, { someId });
+  },
+});
+```
+
+Rendering the component with:
+
+```html
+<component-with-ports some-id="1"></component-with-ports>
+```
+
+Will pass the flags as `{ someId : Int }`, rather than `{ someId : String }`.
+
 ## `onDetached` (new in 0.3.0)
 
 If you need to do some work when the Elm component is removed from the DOM, you can now pass `onDetached: () => ...` as another option:
