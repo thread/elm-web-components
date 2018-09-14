@@ -2,14 +2,13 @@
 
 A small JavaScript package to let you wrap your Elm applications up in a web component.
 
-
 ## Install
 
 ```
 yarn add @teamthread/elm-web-components
 ```
 
-## Configuration
+## Configuration (new in 0.6.0)
 
 We support both Elm 0.18 and 0.19 for now. You must configure the module so it knows which one to support:
 
@@ -124,10 +123,10 @@ integer:
 ```js
 elmWebComponents.register('component-with-ports', ComponentWithPorts, {
   mapFlags: flags => {
-    const someId = parseInt(flags.someId);
-    return Object.assign({}, flags, { someId });
+    const someId = parseInt(flags.someId)
+    return Object.assign({}, flags, { someId })
   },
-});
+})
 ```
 
 Rendering the component with:
@@ -150,33 +149,12 @@ elmWebComponents.register('component-with-ports', ComponentWithPorts, {
   },
   onDetached: () => {
     console.log('Called when the component is removed from the DOM')
-  }
+  },
 })
 ```
 
 This is useful for tidying up any event listeners you might have.
 
-
 ## Examples
 
 You can find full examples in the `example` directory. If you have cloned the repository, you can run `yarn run example` to run them locally.
-
-## Changelog
-
-**v0.5.0** [28 Aug 2018] (in beta)
-
-* Breaking change: we now support Elm 0.19 and 0.18! You must now configure the library before using it: `elmWebComponents.configure('0.18')` or `elmWebComponents.configure('0.19')`.
-
-**v0.4.0** [22 Aug 2018]
-
-* Breaking change: we now convert kebab case properties into camelCase. So `<foo-bar first-name="Jack" />` will be given to Elm as `firstName: "Jack"`.
-
-
-**v0.3.0** [3 May 2018]
-
-* You can now pass `onDetached` as an option. This is a callback function that will be run when component is removed from the DOM.
-
-**v0.2.0** [1 May 2018]
-
-* Added support for static flags via the `staticFlags` option.
-* **Breaking change**: third argument to `register` now takes an object with two (optional) properties: `setupPorts` and `staticFlags`, rather than just a function for setting up the ports.
