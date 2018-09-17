@@ -1,5 +1,10 @@
 # Changelog
 
+**v0.6.1** [17 Sept 2018]
+
+* Fix a bug where pre-rendered HTML wasn't being cleared with Elm 0.19 - thanks @isaacseymour
+
+
 **v0.6.0** [14 Sept 2018]
 
 * fully support Elm 0.19 and 0.18. This was released as `0.5.0-beta` but is now fully released as 0.6.0.
