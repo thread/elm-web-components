@@ -69,6 +69,7 @@ const elmWebComponents = {
        */
         const elmDiv = document.createElement('div')
 
+        this.innerHTML = '';
         this.appendChild(elmDiv)
 
         const elmElement = ElmComponent.init({
