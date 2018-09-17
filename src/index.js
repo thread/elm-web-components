@@ -65,11 +65,11 @@ const elmWebComponents = {
       if (elmVersion === '0.19') {
         /* a change in Elm 0.19 means that ElmComponent.init now replaces the node you give it
        * whereas in 0.18 it rendered into it. To avoid Elm therefore destroying our custom element
-       * we create a div that we let Elm render into
+       * we create a div that we let Elm render into, and manually clear any pre-rendered contents.
        */
         const elmDiv = document.createElement('div')
 
-        this.innerHTML = '';
+        this.innerHTML = ''
         this.appendChild(elmDiv)
 
         const elmElement = ElmComponent.init({
