@@ -52,42 +52,42 @@ const elmWebComponents = {
       return
     }
 
-    const elementPrototype = Object.create(HTMLElement.prototype)
-
     const elmVersion = this.__elmVersion
 
-    elementPrototype.createdCallback = function() {
-      let props = Object.assign({}, getProps(this), staticFlags)
-      if (Object.keys(props).length === 0) props = undefined
+    class ElmElement extends HTMLElement {
+      connectedCallback() {
+        let props = Object.assign({}, getProps(this), staticFlags)
+        if (Object.keys(props).length === 0) props = undefined
 
-      const flags = mapFlags(props);
+        const flags = mapFlags(props)
 
-      if (elmVersion === '0.19') {
-        /* a change in Elm 0.19 means that ElmComponent.init now replaces the node you give it
-       * whereas in 0.18 it rendered into it. To avoid Elm therefore destroying our custom element
-       * we create a div that we let Elm render into, and manually clear any pre-rendered contents.
-       */
-        const elmDiv = document.createElement('div')
+        if (elmVersion === '0.19') {
+          /* a change in Elm 0.19 means that ElmComponent.init now replaces the node you give it
+           * whereas in 0.18 it rendered into it. To avoid Elm therefore destroying our custom element
+           * we create a div that we let Elm render into, and manually clear any pre-rendered contents.
+           */
+          const elmDiv = document.createElement('div')
 
-        this.innerHTML = ''
-        this.appendChild(elmDiv)
+          this.innerHTML = ''
+          this.appendChild(elmDiv)
 
-        const elmElement = ElmComponent.init({
-          flags,
-          node: elmDiv,
-        })
-        setupPorts(elmElement.ports)
-      } else if (elmVersion === '0.18') {
-        const elmElement = ElmComponent.embed(this, flags)
-        setupPorts(elmElement.ports)
+          const elmElement = ElmComponent.init({
+            flags,
+            node: elmDiv,
+          })
+          setupPorts(elmElement.ports)
+        } else if (elmVersion === '0.18') {
+          const elmElement = ElmComponent.embed(this, flags)
+          setupPorts(elmElement.ports)
+        }
+      }
+
+      disconnectedCallback() {
+        onDetached()
       }
     }
 
-    elementPrototype.detachedCallback = function() {
-      onDetached()
-    }
-
-    document.registerElement(name, { prototype: elementPrototype })
+    customElements.define(name, ElmElement);
   },
 }
 
