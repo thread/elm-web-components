@@ -2,6 +2,8 @@
 
 A small JavaScript package to let you wrap your Elm applications up in a web component.
 
+## NOTE: this documentation is for v0.7.0-beta, which supports V1 of the Web Elements spec. If you still need V0, please [check the docs for 0.6.1](https://github.com/thread/elm-web-components/tree/0.6.1)
+
 ## Install
 
 ```
@@ -10,7 +12,7 @@ yarn add @teamthread/elm-web-components
 
 ## Configuration (new in 0.6.0)
 
-We support both Elm 0.18 and 0.19 for now. You must configure the module so it knows which one to support:
+We support both Elm 0.18 and 0.19. You must configure the module so it knows which one to support:
 
 ```js
 elmWebComponents.configure('0.18')
@@ -28,6 +30,7 @@ Given the following Elm app:
 module Main exposing (..)
 
 import Html exposing (text, Html)
+import Browser
 
 type Msg
     = NoOp
@@ -57,7 +60,7 @@ init flags =
 
 main : Program Flags Model Msg
 main =
-    Html.programWithFlags
+    Browser.element
         { init = init, update = update, subscriptions = \_ -> Sub.none, view = view }
 ```
 
@@ -76,7 +79,7 @@ And now in your HTML you can use the component:
 <demo-elm-component name="Jack"></demo-elm-component>
 ```
 
-Any attributes are passed into your Elm app as Flags, so make sure you use `programWithFlags` if you care about them. If you don't you can just use `Html.program` as you would normally.
+Any attributes are passed into your Elm app as Flags.
 
 ## Ports
 
@@ -158,3 +161,12 @@ This is useful for tidying up any event listeners you might have.
 ## Examples
 
 You can find full examples in the `example` directory. If you have cloned the repository, you can run `yarn run example` to run them locally.
+
+## Polyfilling for older browsers
+
+elm-web-components does not ship with any polyfills. You should ensure the following functions are available in all browsers you support:
+
+* `Object.assign`
+* `Object.keys`
+
+And additionally ensure that you've included a polyfill for custom elements. We recommend [document-register-element](https://github.com/WebReflection/document-register-element).
