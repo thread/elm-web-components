@@ -1,6 +1,6 @@
 {
   "name": "@teamthread/elm-web-components",
-  "version": "0.6.1",
+  "version": "0.7.0-beta",
   "description": "Run your Elm apps through web components.",
   "main": "lib/index.js",
   "scripts": {
@@ -12,9 +12,7 @@
     "elm-lint-fix": "elm-format example/ --yes"
   },
   "keywords": [],
-  "files": [
-    "lib/index.js"
-  ],
+  "files": ["lib/index.js"],
   "author": "Team Thread",
   "license": "MIT",
   "prettier": {
