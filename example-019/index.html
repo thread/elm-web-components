@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Elm Webcomponents Example</title>
+    <script>this.customElements||document.write('<script src="//unpkg.com/document-register-element"><\x2fscript>');</script>
+    <script src="https://unpkg.com/built-in-element"></script>
   </head>
   <body>
     <h1>Elm 0.19 components</h1>
@@ -13,11 +15,11 @@
     <button id="remove">Click me to remove</button>
     <div>
       <h1>Component with ports:</h1>
-      <component-with-ports />
+      <component-with-ports></component-with-ports>
     </div>
     <div>
       <h1>Component with static props:</h1>
-      <component-with-static-prop name="Jack" age="25" />
+      <component-with-static-prop name="Jack" age="25"></component-with-static-prop>
     </div>
     <script src="/example.js"></script>
   </body>

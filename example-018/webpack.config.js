@@ -19,6 +19,13 @@ module.exports = {
         loader: 'elm-webpack-loader',
         options: {},
       },
+      {
+        test: /\.js/,
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env'],
+        },
+      },
     ],
     noParse: [/.elm$/],
   },

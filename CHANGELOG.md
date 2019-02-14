@@ -1,9 +1,12 @@
 # Changelog
 
+**v0.7.0-beta** [14 Feb 2019]
+
+* **BREAKING**: this version supports the new Web Components V1 spec and **removes support for the V0 spec**. If you need to stay on the V0 spec, please stick to v0.6.1. Thanks @PChambino for the pull request implementing this.
+
 **v0.6.1** [17 Sept 2018]
 
 * Fix a bug where pre-rendered HTML wasn't being cleared with Elm 0.19 - thanks @isaacseymour
-
 
 **v0.6.0** [14 Sept 2018]
 

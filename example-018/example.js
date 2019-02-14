@@ -1,3 +1,4 @@
+import 'core-js/es6/object'
 const ElmComponent = require('./Component.elm')
 const ElmComponentWithPorts = require('./ComponentWithPorts.elm')
 const ElmComponentWithStaticProp = require('./ComponentWithStaticProp.elm')

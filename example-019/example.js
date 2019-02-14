@@ -1,3 +1,5 @@
+import 'core-js/es6/object'
+
 const { Elm } = require('./Component.elm')
 
 const elmWebComponents = require('../src/index')

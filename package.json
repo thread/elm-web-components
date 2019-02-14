@@ -12,7 +12,9 @@
     "elm-lint-fix": "elm-format example/ --yes"
   },
   "keywords": [],
-  "files": ["lib/index.js"],
+  "files": [
+    "lib/index.js"
+  ],
   "author": "Team Thread",
   "license": "MIT",
   "prettier": {
@@ -23,7 +25,10 @@
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-env": "^7.3.1",
+    "babel-loader": "^8.0.5",
+    "core-js": "^2.6.4",
+    "document-register-element": "^1.13.1",
     "elm-format": "^0.8.0",
     "prettier": "1.10.2",
     "webpack": "^4.17.1",
