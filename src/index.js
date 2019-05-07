@@ -89,7 +89,7 @@ const elmWebComponents = {
           }
         } catch (error) {
           console.error(error)
-          onSetupError(error)
+          onSetupError(error, flags)
         }
       }
 
