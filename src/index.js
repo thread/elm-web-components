@@ -88,8 +88,8 @@ const elmWebComponents = {
             setupPorts(elmElement.ports)
           }
         } catch (error) {
+          console.error(error)
           onSetupError(error)
-          throw error
         }
       }
 
