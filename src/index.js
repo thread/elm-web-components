@@ -62,11 +62,13 @@ const elmWebComponents = {
 
     class ElmElement extends HTMLElement {
       connectedCallback() {
+        const context = {};
         try {
           let props = Object.assign({}, getProps(this), staticFlags)
           if (Object.keys(props).length === 0) props = undefined
 
           const flags = mapFlags(props)
+          context.flags = flags;
 
           if (elmVersion === '0.19') {
             /* a change in Elm 0.19 means that ElmComponent.init now replaces the node you give it
@@ -89,7 +91,7 @@ const elmWebComponents = {
           }
         } catch (error) {
           console.error(error)
-          onSetupError(error, flags)
+          onSetupError(error, context)
         }
       }
 
