@@ -2,7 +2,7 @@
 
 A small JavaScript package to let you wrap your Elm applications up in a web component.
 
-## NOTE: this documentation is for v0.7.0-beta, which supports V1 of the Web Elements spec. If you still need V0, please [check the docs for 0.6.1](https://github.com/thread/elm-web-components/tree/0.6.1)
+**Only supports the V1 web component spec**.
 
 ## Install
 
@@ -140,7 +140,7 @@ Rendering the component with:
 
 Will pass the flags as `{ someId : Int }`, rather than `{ someId : String }`.
 
-## `onDetached` (new in 0.3.0)
+## `onDetached`
 
 If you need to do some work when the Elm component is removed from the DOM, you can now pass `onDetached: () => ...` as another option:
 
@@ -157,6 +157,18 @@ elmWebComponents.register('component-with-ports', ComponentWithPorts, {
 ```
 
 This is useful for tidying up any event listeners you might have.
+
+## Handling errors
+
+If you want to catch any errors registering the component, you can pass `onSetupError`:
+
+```js
+elmWebComponents.register('component-with-ports', ComponentWithPorts, {
+  onSetupError: error => {
+    console.log('Something went wrong', error)
+  },
+})
+```
 
 ## Examples
 

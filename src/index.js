@@ -41,7 +41,7 @@ const elmWebComponents = {
       staticFlags = {},
       onDetached = () => {},
       mapFlags = flags => flags,
-      onSetupError = () => {}
+      onSetupError,
     } = {}
   ) {
     if (!this.__elmVersion) {
@@ -62,13 +62,13 @@ const elmWebComponents = {
 
     class ElmElement extends HTMLElement {
       connectedCallback() {
-        const context = {};
+        const context = {}
         try {
           let props = Object.assign({}, getProps(this), staticFlags)
           if (Object.keys(props).length === 0) props = undefined
 
           const flags = mapFlags(props)
-          context.flags = flags;
+          context.flags = flags
 
           if (elmVersion === '0.19') {
             /* a change in Elm 0.19 means that ElmComponent.init now replaces the node you give it
@@ -90,8 +90,15 @@ const elmWebComponents = {
             setupPorts(elmElement.ports)
           }
         } catch (error) {
-          console.error(error)
-          onSetupError(error, context)
+          if (onSetupError) {
+            onSetupError(error, context)
+          } else {
+            console.error(
+              `Error from elm-web-components registering ${name}`,
+              'You can pass an `onSetupError` to handle these.',
+              error
+            )
+          }
         }
       }
 
@@ -100,7 +107,7 @@ const elmWebComponents = {
       }
     }
 
-    customElements.define(name, ElmElement);
+    customElements.define(name, ElmElement)
   },
 }
 

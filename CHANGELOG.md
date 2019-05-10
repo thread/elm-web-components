@@ -1,5 +1,10 @@
 # Changelog
 
+**v1.0.0** [10 May 2019]
+
+* Released the breaking changes in 0.7-beta as a v1.
+* Allow passing an `onSetupError` function to handle errors registering Elm web components. Thanks @PChambino for this PR.
+
 **v0.7.0-beta** [14 Feb 2019]
 
 * **BREAKING**: this version supports the new Web Components V1 spec and **removes support for the V0 spec**. If you need to stay on the V0 spec, please stick to v0.6.1. Thanks @PChambino for the pull request implementing this.
