@@ -12,7 +12,9 @@
     "elm-lint-fix": "elm-format example/ --yes"
   },
   "keywords": [],
-  "files": ["lib/index.js"],
+  "files": [
+    "lib/index.js"
+  ],
   "author": "Team Thread",
   "license": "MIT",
   "prettier": {
