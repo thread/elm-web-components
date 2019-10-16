@@ -158,7 +158,7 @@ elmWebComponents.register('component-with-ports', ComponentWithPorts, {
 
 This is useful for tidying up any event listeners you might have.
 
-## Handling errors
+## Handling errors
 
 If you want to catch any errors registering the component, you can pass `onSetupError`:
 
