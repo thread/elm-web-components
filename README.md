@@ -172,7 +172,7 @@ elmWebComponents.register('component-with-ports', ComponentWithPorts, {
 
 ## Examples
 
-You can find full examples in the `example` directory. If you have cloned the repository, you can run `yarn run example` to run them locally.
+You can find full examples in the `example` directory. If you have cloned the repository, you can run `yarn run example-018` or `yarn run example-019` to run them locally.
 
 ## Polyfilling for older browsers
 
