@@ -71,19 +71,14 @@ const elmWebComponents = {
           const flags = mapFlags(props)
           context.flags = flags
 
-          var elmDiv = this;
-          var parentDiv = this;
-
-          if (useShadowDom) {
-            parentDiv = this.attachShadow({mode: 'open'});
-          }
+          const parentDiv = useShadowDom ? this.attachShadow({mode: 'open'}) : this;
 
           if (elmVersion === '0.19') {
             /* a change in Elm 0.19 means that ElmComponent.init now replaces the node you give it
              * whereas in 0.18 it rendered into it. To avoid Elm therefore destroying our custom element
              * we create a div that we let Elm render into, and manually clear any pre-rendered contents.
              */
-            elmDiv = document.createElement('div')
+            const elmDiv = document.createElement('div')
 
             parentDiv.innerHTML = ''
             parentDiv.appendChild(elmDiv)
@@ -94,7 +89,7 @@ const elmWebComponents = {
             })
             setupPorts(elmElement.ports)
           } else if (elmVersion === '0.18') {
-            const elmElement = ElmComponent.embed(elmDiv, flags)
+            const elmElement = ElmComponent.embed(parentDiv, flags)
             setupPorts(elmElement.ports)
           }
         } catch (error) {
