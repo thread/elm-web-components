@@ -42,6 +42,7 @@ const elmWebComponents = {
       onDetached = () => {},
       mapFlags = flags => flags,
       onSetupError,
+      useShadowDom = false,
     } = {}
   ) {
     if (!this.__elmVersion) {
@@ -70,6 +71,8 @@ const elmWebComponents = {
           const flags = mapFlags(props)
           context.flags = flags
 
+          const parentDiv = useShadowDom ? this.attachShadow({mode: 'open'}) : this;
+
           if (elmVersion === '0.19') {
             /* a change in Elm 0.19 means that ElmComponent.init now replaces the node you give it
              * whereas in 0.18 it rendered into it. To avoid Elm therefore destroying our custom element
@@ -77,8 +80,8 @@ const elmWebComponents = {
              */
             const elmDiv = document.createElement('div')
 
-            this.innerHTML = ''
-            this.appendChild(elmDiv)
+            parentDiv.innerHTML = ''
+            parentDiv.appendChild(elmDiv)
 
             const elmElement = ElmComponent.init({
               flags,
@@ -86,7 +89,7 @@ const elmWebComponents = {
             })
             setupPorts(elmElement.ports)
           } else if (elmVersion === '0.18') {
-            const elmElement = ElmComponent.embed(this, flags)
+            const elmElement = ElmComponent.embed(parentDiv, flags)
             setupPorts(elmElement.ports)
           }
         } catch (error) {

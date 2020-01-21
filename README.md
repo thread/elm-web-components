@@ -81,6 +81,17 @@ And now in your HTML you can use the component:
 
 Any attributes are passed into your Elm app as Flags.
 
+## Shadow Dom
+
+By default Elm will render inside your custom element directly, if you want to isolate the Elm renderer dom using shadow dom you can register the custom element like this:
+
+```js
+import elmWebComponents from '@teamthread/elm-web-components'
+import ElmApp from './Main.elm'
+
+elmWebComponents.register('demo-elm-component', ElmApp.Main, {useShadowDom: true})
+```
+
 ## Ports
 
 You can also hook up a component that uses ports. The third argument to `elmWebComponents.register` is an object that can take a function that will be called with the ports object that Elm provides, so you can then hook into it and `subscribe` and `send` to them as you would normally:
