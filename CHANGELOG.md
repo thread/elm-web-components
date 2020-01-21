@@ -1,5 +1,9 @@
 # Changelog
 
+**v1.1.0** [21 Jan 2020]
+
+* Add support for rendering using the shadow DOM (thanks @mdevlamynck)
+
 **v1.0.0** [10 May 2019]
 
 * Released the breaking changes in 0.7-beta as a v1.
