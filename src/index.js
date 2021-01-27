@@ -43,6 +43,8 @@ const elmWebComponents = {
       mapFlags = flags => flags,
       onSetupError,
       useShadowDom = false,
+      onAttributeChanged = () => {},
+      setObservedAttributes = () => {},
     } = {}
   ) {
     if (!this.__elmVersion) {
@@ -83,14 +85,14 @@ const elmWebComponents = {
             parentDiv.innerHTML = ''
             parentDiv.appendChild(elmDiv)
 
-            const elmElement = ElmComponent.init({
+            this.elmElement = ElmComponent.init({
               flags,
               node: elmDiv,
             })
-            setupPorts(elmElement.ports)
+            setupPorts(this.elmElement.ports)
           } else if (elmVersion === '0.18') {
-            const elmElement = ElmComponent.embed(parentDiv, flags)
-            setupPorts(elmElement.ports)
+            this.elmElement = ElmComponent.embed(parentDiv, flags)
+            setupPorts(this.elmElement.ports)
           }
         } catch (error) {
           if (onSetupError) {
@@ -103,6 +105,15 @@ const elmWebComponents = {
             )
           }
         }
+      }
+
+      static get observedAttributes() {
+        return setObservedAttributes();
+      }
+
+      attributeChangedCallback(name, oldValue, newValue) {
+        if (!this.elmElement) return;
+        onAttributeChanged(name, oldValue, newValue, this.elmElement.ports);
       }
 
       disconnectedCallback() {
